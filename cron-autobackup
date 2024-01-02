@@ -3,12 +3,16 @@ pwd
 
 mkdir ~/Backups/
 
-crontab -e
+nano backupscript.sh
+
+#!bin/bash/
 
 tar -czf ~/Backups/ourarchive.tar.gz ~/{Documents,Pictures,Music,Pictures,Videos} 2>~/Backups/error.log
 date >> ~/Backups/backups.log
-
-command > bash ~/Backups/backupscript
-
 mv ~/backup.txt ~/backup_`date +”%d-%m-%Y”`
 
+crontab -e
+
+*/2 - To run the script every 2 minutes
+
+command > bash ~/Backups/backupscript
