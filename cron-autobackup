@@ -1,0 +1,14 @@
+pwd
+/home/rootuser/
+
+mkdir ~/Backups/
+
+crontab -e
+
+tar -czf ~/Backups/ourarchive.tar.gz ~/{Documents,Pictures,Music,Pictures,Videos} 2>~/Backups/error.log
+date >> ~/Backups/backups.log
+
+command > bash ~/Backups/backupscript
+
+mv ~/backup.txt ~/backup_`date +”%d-%m-%Y”`
+
