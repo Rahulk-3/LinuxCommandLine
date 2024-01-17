@@ -1,57 +1,65 @@
-Backup Script
+# Backup Script
 
-Description
+## Description
 
 This script is designed to create a compressed archive of specified user directories and save it in the Backups directory. Additionally, it logs the execution time in the backups.log file and any errors in the error.log file.
 
-Usage
-Navigate to the home directory:
+## Usage
 
-bash
-Copy code
-pwd
-/home/rootuser/
-Create a Backups directory:
+1. Navigate to the home directory:
 
-bash
-Copy code
-mkdir ~/Backups/
-Create and edit the backup script:
+    ```bash
+    pwd /home/rootuser/
+    ```
 
-bash
-Copy code
-nano backupscript.sh
-Add the following content:
+2. Create a Backups directory:
 
-bash
-Copy code
-#! /bin/bash
+    ```bash
+    mkdir ~/Backups/
+    ```
 
-tar -czf ~/Backups/ourarchive.tar.gz ~/{Documents,Pictures,Music,Pictures,Videos} 2>~/Backups/error.log
-date >> ~/Backups/backups.log
-mv ~/backup.txt ~/backup_$(date +"%d-%m-%Y")
-Make the script executable:
+3. Create and edit the backup script:
 
-bash
-Copy code
-chmod +x backupscript.sh
-Schedule the script to run every 2 minutes:
+    ```bash
+    nano backupscript.sh
+    ```
 
-bash
-Copy code
-crontab -e
-Add the following line:
+4. Add the following content:
 
-bash
-Copy code
-*/2 * * * * bash ~/Backups/backupscript
-Save and exit the editor.
+    ```bash
+    #! /bin/bash
 
-Save the crontab changes.
+    tar -czf ~/Backups/ourarchive.tar.gz /{Documents,Pictures,Music,Pictures,Videos} 2>/Backups/error.log
+    date >> ~/Backups/backups.log
+    mv ~/backup.txt ~/backup_$(date +"%d-%m-%Y")
+    ```
 
-Run the script manually or wait for the cron job to execute.
+5. Make the script executable:
 
-Notes
-The script creates a compressed archive (ourarchive.tar.gz) of specified user directories: Documents, Pictures, Music, Pictures, and Videos.
-Execution logs are stored in the Backups directory (backups.log and error.log).
-The script is scheduled to run every 2 minutes using cron.
+    ```bash
+    chmod +x backupscript.sh
+    ```
+
+6. Schedule the script to run every 2 minutes:
+
+    ```bash
+    crontab -e
+    ```
+
+7. Add the following line:
+
+    ```bash
+    */2 * * * * bash ~/Backups/backupscript
+    ```
+
+8. Save and exit the editor.
+
+9. Save the crontab changes.
+
+10. Run the script manually or wait for the cron job to execute.
+
+## Notes
+
+- The script creates a compressed archive (ourarchive.tar.gz) of specified user directories: Documents, Pictures, Music, Pictures, and Videos.
+- Execution logs are stored in the Backups directory (backups.log and error.log).
+- The script is scheduled to run every 2 minutes using cron.
